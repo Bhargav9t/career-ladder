@@ -1,0 +1,8 @@
+
+{
+  "name": "Career Ladder",
+  "description": "A full-stack academic opportunity platform with AI-powered matching for students and professionals across all education levels.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
