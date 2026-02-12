@@ -2,20 +2,16 @@ import { createClient } from '@supabase/supabase-js';
 import { chromium } from 'playwright';
 import dotenv from "dotenv";
 
-// Load environment variables from .env.local
-dotenv.config({ path: ".env.local" });
+dotenv.config();
 
-// Validate env variables
 if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
   throw new Error("Missing Supabase environment variables");
 }
 
-// Create Supabase client
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_ANON_KEY
 );
-
 async function scrapeOpportunities() {
   const browser = await chromium.launch({
     headless: true,
