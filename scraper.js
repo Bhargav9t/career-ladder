@@ -2,7 +2,9 @@ import { createClient } from '@supabase/supabase-js';
 import { chromium } from 'playwright';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '.env.local' });
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
