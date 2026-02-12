@@ -25,13 +25,6 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      # Create .env.local from GitHub secrets
-      - name: Create environment file
-        run: |
-          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" > .env.local
-          echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env.local
-          cat .env.local
-
      -name: Run Scraper
   env:
     SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
