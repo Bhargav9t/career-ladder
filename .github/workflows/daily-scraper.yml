@@ -2,9 +2,7 @@ name: Daily Career Opportunity Scraper
 
 on:
   schedule:
-    # Runs at 00:00 UTC every day
     - cron: '0 0 * * *'
-  # Allows you to run this manually from the Actions tab for testing
   workflow_dispatch:
 
 jobs:
