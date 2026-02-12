@@ -2,10 +2,7 @@ name: Daily Career Opportunity Scraper
 
 on:
   schedule:
-    # Runs at 00:00 UTC every day
     - cron: '0 0 * * *'
-
-  # Allows manual triggering from GitHub UI
   workflow_dispatch:
 
 jobs:
@@ -13,28 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1 — Get repo code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2 — Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      # Step 3 — Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # Step 4 — Install Playwright browsers
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      # Step 5 — Run scraper (FIXED ENV VARIABLES)
+      - name: Create environment file
+        run: |
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env.local
+          echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env.local
+
       - name: Run Scraper
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: node scraper.js
