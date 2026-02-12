@@ -2,7 +2,9 @@ name: Daily Career Opportunity Scraper
 
 on:
   schedule:
+    # Runs at 00:00 UTC every day
     - cron: '0 0 * * *'
+  # Allows you to run this manually from the Actions tab for testing
   workflow_dispatch:
 
 jobs:
@@ -25,9 +27,8 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-     -name: Run Scraper
-  env:
-    SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-    SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-  run: node scraper.js
-
+      - name: Run Scraper
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node scraper.js
