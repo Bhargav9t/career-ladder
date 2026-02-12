@@ -32,5 +32,9 @@ jobs:
           echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env.local
           cat .env.local
 
-      - name: Run Scraper
-        run: node scraper.js
+     -name: Run Scraper
+  env:
+    SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+    SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+  run: node scraper.js
+
