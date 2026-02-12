@@ -25,6 +25,7 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      # 👇 THIS IS THE CRITICAL PART THAT WAS BROKEN
       - name: Run Scraper
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
